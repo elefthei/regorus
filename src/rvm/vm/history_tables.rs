@@ -301,9 +301,7 @@ impl RegoVM {
             decision
                 .check(&stored, &mut limits)
                 .map_err(|error| VmError::from_history(error, pc))?;
-            let Some(bindings) =
-                history_semantics::compile::bindings(&slot.template, &decision.request)
-            else {
+            let Some(bindings) = RuleRuntime::bindings(&slot.template, &decision.request) else {
                 return Ok(InstructionOutcome::Continue);
             };
             // Native provenance: this locked record is the staged history, and
