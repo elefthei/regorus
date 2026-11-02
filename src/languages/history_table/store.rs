@@ -30,7 +30,7 @@ const HISTORY_CACHE_CAPACITY: usize = 16;
 
 /// A Program-keyed table cache over the process-wide history store. Identities and
 /// histories are shared by every wrapper; wrapper construction is not an isolation boundary.
-#[derive(Debug)]
+#[cfg_attr(not(verus_keep_ghost), derive(Debug))]
 pub struct HistoryStore {
     core: Arc<CoreHistoryStore>,
     tables: Mutex<Vec<TableCacheEntry>>,

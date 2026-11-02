@@ -37,7 +37,7 @@ pub(super) enum MemoryBudgetLifecycle {
 }
 
 /// The Rego Virtual Machine
-#[derive(Debug)]
+#[cfg_attr(not(verus_keep_ghost), derive(Debug))]
 pub struct RegoVM {
     /// Registers for storing values during execution
     pub(super) registers: Vec<Value>,

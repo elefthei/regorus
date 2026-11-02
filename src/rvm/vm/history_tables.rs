@@ -28,13 +28,13 @@ use parking_lot::Mutex;
 #[cfg(not(feature = "std"))]
 use spin::Mutex;
 
-#[derive(Debug)]
+#[cfg_attr(not(verus_keep_ghost), derive(Debug))]
 pub(super) struct HistoryAttachment {
     store: Arc<HistoryStore>,
     tables: Vec<Arc<HistoryTableRuntime>>,
 }
 
-#[derive(Debug)]
+#[cfg_attr(not(verus_keep_ghost), derive(Debug))]
 pub(super) struct HistoryDecision {
     record: HistoryRecord,
     revision: u64,
